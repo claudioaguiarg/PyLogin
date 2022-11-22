@@ -2,7 +2,7 @@ import tkinter as tk
 
 #Arthor: Cláudio Aguiar
 
-user_dict = {'claudio':'123'}
+user_dict = {'claudio':'123', 'giovanna':'1234'}
 authorization = False
 def login_verify():
     global authorization
@@ -10,7 +10,7 @@ def login_verify():
     entry_user.delete('0', 'end')
     user_password = entry_password.get()
     entry_password.delete('0', 'end')
-    if user_name in user_dict.keys() and user_password in user_dict.values():
+    if user_name in user_dict.keys() and user_password == user_dict[user_name]:
         authorization = True
         main.destroy()
     else:
