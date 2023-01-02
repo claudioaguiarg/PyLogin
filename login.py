@@ -1,8 +1,12 @@
 import tkinter as tk
+import sqlite3
+con = sqlite3.connect("db.db")
+db = con.cursor()
 
+res = db.execute("SELECT name, pass FROM user")
+user_dict = dict(res.fetchall())
 #Arthor: Cláudio Aguiar
 
-user_dict = {'claudio':'123', 'giovanna':'1234'}
 authorization = False
 def login_verify():
     global authorization
@@ -10,7 +14,7 @@ def login_verify():
     entry_user.delete('0', 'end')
     user_password = entry_password.get()
     entry_password.delete('0', 'end')
-    if user_name in user_dict.keys() and user_password == user_dict[user_name]:
+    if user_name in user_dict.keys() and int(user_password) == user_dict[user_name]:
         authorization = True
         main.destroy()
     else:
